@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form</title>
+  <style>
+    *{font-family: 'Arial';
+    }
+    td{padding: 2px 10px;}
+    .hasil{display: none;}
+    #submit{margin: 30px 140px;}
+  </style>
+</head>
+<body>
+  <h2>Form Pendaftaran Mahasiswa</h2>
+  <form onsubmit="return false">
+    <table>
+      <tr>
+        <td>Nama</td>
+        <td><input type="text" id="name" autocomplete="off"></td>
+      </tr>
+      <tr>
+        <td>Jenis Kelamin</td>
+        <td>
+          <label><input type="radio" name="gender" value="pria" id="pria">Pria</label>
+          <label><input type="radio" name="gender" value="wanita" id="wanita">Wanita</label>
+        </td>
+      </tr>
+      <tr><td>Prodi</td>
+        <td>
+          <select name="prodi" id="prodi">
+            <option value="Teknik Informatika">Teknik Informatika</option>
+            <option value="Sistem Informasi">Sistem Informasi</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Hoby</td>
+        <td>
+          <label><input type="checkbox" name="hoby" value="Coding"> coding</label>
+          <label><input type="checkbox" name="hoby" value="Jalan-jalan"> Jalan-jalan</label>
+          <label><input type="checkbox" name="hoby" value="Makan"> Makan</label>
+        </td>
+      </tr>
+    </table>
+    <button id="submit" type="submit">submit</button>
+    </form>
+    <div class="hasil">
+      <hr>
+      <h2>Hasil</h2>
+      <table>
+        <tr>
+          <td>Nama</td>
+          <td>:</td>
+          <td id="nama"></td>
+        </tr>
+        <tr>
+          <td>Jenis Kelamin</td>
+          <td>:</td>
+          <td id="jk"></td>
+        </tr>
+        <tr>
+          <td>Prodi</td>
+          <td>:</td>
+          <td id="jurusan"></td>
+        </tr>
+        <tr>
+          <td>Hoby</td>
+          <td>:</td>
+          <td id="kesukaan"></td>
+        </tr>
+      </table>
+    </div>
+  <p id="demo"></p>
+  <p id="demo"></p>
+
+<script>
+document.getElementById('submit').addEventListener('click', myFunction);
+
+function myFunction() {
+  const div = document.querySelector('div');
+  div.classList.toggle('hasil');
+
+  const name = document.getElementById('name').value;
+  document.getElementById('nama').innerHTML = name;
+  
+  const gender = document.getElementsByName('gender');
+  for(let i=0; i<gender.length; i++){
+    if(gender[i].type==='radio'){
+      if(gender[i].checked){
+        document.getElementById('jk').innerHTML = gender[i].value;
+      }
+    }
+  }
+
+  const prodi = document.getElementById('prodi');
+  document.getElementById('jurusan').innerHTML = prodi.value;
+
+  const hoby = document.getElementsByName('hoby');
+  for(let i=0; i<hoby.length; i++){
+    if(hoby[i].type == 'checkbox'){
+      
+      if(hoby[i].checked){
+
+        let boxs = [];
+        boxs.push(hoby[i].value);
+        boxs.forEach(box =>{
+          document.getElementById('kesukaan').append(box);
+          document.getElementById('kesukaan').append(', ');
+        })
+      }
+    }
+  }
+  
+}
+</script>
+
+</body>
+</html>
